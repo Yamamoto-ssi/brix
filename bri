@@ -9,3 +9,73 @@
         return null;
 
     }
+
+
+
+
+
+
+
+
+
+Name class: MsConnectAccess
+Group id : net.sf.ucanaccess
+Artifact:ucanaccess
+Version: 4.0.4
+Code for connection
+public static Connection conn() {
+        try {
+            String url = "jdbc:ucanaccess://”location of database” ";
+            Connection conn = DriverManager.getConnection(url);
+            return conn;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+
+new jframe
+2 label
+2 textfield = txt_username / txt_password
+1 button 
+Jbutton default codes
+
+First 
+Package
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+public class
+Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
+
+String username = txt_username.getText();
+        char[] pass = txt_password.getPassword();
+        String userpassword = String.valueOf(pass);
+        
+        try{
+        String sqlquery = "Select * From Table1 WHERE user_name = ? and user_password = ? ";
+        pst = conn.prepareStatement(sqlquery);
+        pst.setString(1,username);
+        pst.setString(2, userpassword);
+            rs = pst.executeQuery();
+            
+            if(!rs.next())
+            {
+            JOptionPane.showMessageDialog(null,"incorrect input either username or password");
+            
+            }
+            else
+            {
+            JOptionPane.showMessageDialog(null,"login successfull");
+            }
+        }catch(SQLException e){
+            
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+    }  
+
